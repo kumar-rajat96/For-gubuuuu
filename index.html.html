@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Mera Gubuuuu ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Romantic Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Fonts & Romantic Theme Tokens */
+        :root {
+            --bg-gradient-1: #fff0f5;
+            --bg-gradient-2: #ffe4ec;
+            --bg-gradient-3: #ffd1df;
+            --crimson-deep: #9e1936;
+            --crimson-mid: #c92a4c;
+            --rose-soft: #f47292;
+            --gold-accent: #d4af37;
+            --gold-light: #f6e299;
+            --parchment: #fffdf9;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 20% 20%, #fff5f8 0%, #ffe2ec 45%, #f9c8d9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #4a1525;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-romantic {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Ambient Particle Canvas */
+        #ambient-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Soft Bokeh Background Glows */
+        .bokeh-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(55px);
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatBokeh 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatBokeh {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(35px, -30px) scale(1.15); }
+        }
+
+        /* 3D Main Envelope Styling */
+        .envelope-stage {
+            perspective: 1200px;
+            z-index: 10;
+        }
+
+        .main-envelope-wrapper {
+            position: relative;
+            width: min(90vw, 370px);
+            height: min(60vw, 245px);
+            margin: 0 auto;
+            cursor: pointer;
+            animation: gentleHover 3.6s ease-in-out infinite;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+        }
+
+        .main-envelope-wrapper:hover {
+            transform: scale(1.03);
+        }
+
+        @keyframes gentleHover {
+            0%, 100% { transform: translateY(0px) rotate(-0.8deg); }
+            50% { transform: translateY(-12px) rotate(0.8deg); }
+        }
+
+        .envelope-body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #c8284b 0%, #981532 100%);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(152, 21, 50, 0.45),
+                        0 0 0 2px rgba(246, 226, 153, 0.45),
+                        inset 0 0 30px rgba(60, 5, 18, 0.35);
+            overflow: hidden;
+        }
+
+        /* Subtle paper grain pattern on envelope */
+        .envelope-body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);
+            background-size: 14px 14px;
+            pointer-events: none;
+        }
+
+        /* Envelope bottom and side pocket folds */
+        .envelope-pocket-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: min(46vw, 190px) solid #b51f40;
+            border-top: min(30vw, 125px) solid transparent;
+            border-bottom: min(30vw, 125px) solid transparent;
+            z-index: 3;
+            filter: drop-shadow(2px 0 4px rgba(0,0,0,0.18));
+        }
+
+        .envelope-pocket-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-right: min(46vw, 190px) solid #ad1c3c;
+            border-top: min(30vw, 125px) solid transparent;
+            border-bottom: min(30vw, 125px) solid transparent;
+            z-index: 3;
+            filter: drop-shadow(-2px 0 4px rgba(0,0,0,0.18));
+        }
+
+        .envelope-pocket-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 58%;
+            background: linear-gradient(180deg, #d12e52 0%, #a51837 100%);
+            clip-path: polygon(0 100%, 50% 12%, 100% 100%);
+            z-index: 4;
+            border-top: 1px solid rgba(255, 215, 130, 0.4);
+        }
+
+        /* Top Flap with 3D rotation */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(180deg, #df365b 0%, #b11b3c 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 95%);
+            transform-origin: top center;
+            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+            filter: drop-shadow(0 6px 10px rgba(70, 5, 20, 0.35));
+        }
+
+        .main-envelope-wrapper.opened .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* Golden Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff0a8 0%, #e5be53 45%, #b58922 85%, #8f6710 100%);
+            box-shadow: 0 8px 20px rgba(60, 10, 20, 0.45),
+                        inset 0 2px 5px rgba(255, 255, 255, 0.8),
+                        inset 0 -3px 6px rgba(110, 75, 10, 0.6);
+            z-index: 6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease, opacity 0.4s ease;
+            border: 2px dashed rgba(135, 95, 15, 0.55);
+        }
+
+        .wax-seal::after {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 248, 210, 0.65);
+        }
+
+        .main-envelope-wrapper:hover .wax-seal {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .main-envelope-wrapper.opened .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.4);
+            pointer-events: none;
+        }
+
+        /* Letter Sliding Out Animation */
+        .inner-preview-letter {
+            position: absolute;
+            left: 7%;
+            right: 7%;
+            bottom: 10%;
+            height: 82%;
+            background: var(--parchment);
+            border-radius: 12px;
+            z-index: 2;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid #f3dce2;
+        }
+
+        .main-envelope-wrapper.opened .inner-preview-letter {
+            transform: translateY(-65%);
+            z-index: 6;
+        }
+
+        /* Sub-Envelopes Styling */
+        .sub-envelope-card {
+            position: relative;
+            border-radius: 18px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 12px 28px -8px rgba(158, 25, 54, 0.22);
+        }
+
+        .sub-envelope-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 18px 34px -8px rgba(158, 25, 54, 0.32);
+        }
+
+        .sub-envelope-card:active {
+            transform: scale(0.98);
+        }
+
+        .sub-flap-triangle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 44px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            opacity: 0.85;
+            transition: transform 0.45s ease;
+            transform-origin: top;
+        }
+
+        .sub-envelope-card:hover .sub-flap-triangle {
+            transform: rotateX(35deg);
+        }
+
+        /* Parchment Modal Card */
+        .parchment-paper {
+            background: linear-gradient(180deg, #fffefb 0%, #fff6f8 100%);
+            border: 1.5px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 0 25px 60px -15px rgba(110, 15, 38, 0.38),
+                        inset 0 0 40px rgba(255, 224, 234, 0.45);
+        }
+
+        /* Glowing Heart Pulse */
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(225, 29, 72, 0.55)); }
+            14% { transform: scale(1.16); filter: drop-shadow(0 0 24px rgba(225, 29, 72, 0.85)); }
+            28% { transform: scale(1.03); }
+            42% { transform: scale(1.14); filter: drop-shadow(0 0 22px rgba(225, 29, 72, 0.8)); }
+            70% { transform: scale(1); }
+        }
+
+        .beating-heart {
+            animation: heartBeat 2.2s infinite ease-in-out;
+        }
+
+        /* Shimmer Text Effect */
+        .shimmer-gold {
+            background: linear-gradient(90deg, #9e1936 0%, #d4af37 45%, #c92a4c 80%, #9e1936 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 4s linear infinite;
+        }
+
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+
+        /* Smooth View Transitions */
+        .stage-section {
+            transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stage-hidden {
+            opacity: 0;
+            transform: translateY(24px) scale(0.97);
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .stage-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+            position: relative;
+            visibility: visible;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 228, 236, 0.4);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(201, 42, 76, 0.35);
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between min-h-screen selection:bg-rose-200 selection:text-rose-900">
+
+    <!-- Ambient Bokeh Orbs -->
+    <div class="bokeh-orb w-72 h-72 bg-rose-300 top-[-40px] left-[-50px]"></div>
+    <div class="bokeh-orb w-80 h-80 bg-pink-200 bottom-[-60px] right-[-40px]" style="animation-delay: -5s;"></div>
+    <div class="bokeh-orb w-64 h-64 bg-amber-100 top-[35%] left-[60%]" style="animation-delay: -9s;"></div>
+
+    <!-- Ambient Falling Petals & Floating Hearts Canvas -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <!-- Top Floating Bar: Romantic Music Toggle & Progress Pill -->
+    <header class="w-full max-w-2xl px-4 pt-4 pb-2 flex items-center justify-between z-30">
+        <div class="flex items-center gap-2 bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-rose-200/80 shadow-sm">
+            <span class="text-rose-600 text-sm animate-pulse">❤️</span>
+            <span class="text-xs font-semibold tracking-wide text-rose-900/80">For Mera Gubuuuu • From Your Motuuu ❤️</span>
+        </div>
+
+        <!-- Romantic Music Synthesizer Button -->
+        <button id="music-toggle-btn" onclick="toggleRomanticMusic()" 
+            class="flex items-center gap-2 bg-white/80 hover:bg-white backdrop-blur-md px-3.5 py-1.5 rounded-full border border-amber-300/80 shadow-sm text-xs font-medium text-rose-900 transition-all active:scale-95 cursor-pointer"
+            title="Play gentle romantic melody">
+            <span id="music-icon" class="text-sm">🎵</span>
+            <span id="music-label">Play Melody</span>
+        </button>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="w-full max-w-2xl px-4 py-4 flex-1 flex flex-col items-center justify-center relative z-20">
+
+        <!-- ========================================================= -->
+        <!-- STAGE 1: THE MAIN SEALED CRIMSON & GOLD ENVELOPE          -->
+        <!-- ========================================================= -->
+        <section id="stage-1" class="stage-section stage-visible w-full flex flex-col items-center text-center py-6">
+            <div class="mb-6 space-y-1.5">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-rose-100/90 border border-rose-200 text-rose-700 text-xs font-semibold tracking-wider uppercase shadow-xs">
+                    From Your Motuuu ❤️
+                </span>
+                <h1 class="font-script text-4xl sm:text-5xl text-rose-900 drop-shadow-xs">
+                    For Mera Gubuuuu ❤️
+                </h1>
+                <p class="font-serif-romantic italic text-lg sm:text-xl text-rose-800/85">
+                    Your Motuuu’s heart has something important to tell you...
+                </p>
+            </div>
+
+            <!-- Interactive 3D Wax-Sealed Envelope -->
+            <div class="envelope-stage my-4">
+                <div id="main-envelope" class="main-envelope-wrapper" onclick="openMainEnvelope()" role="button" tabindex="0" aria-label="Tap to open envelope for Mera Gubuuuu">
+                    <div class="envelope-body">
+                        <!-- Top Flap -->
+                        <div class="envelope-flap"></div>
+                        
+                        <!-- Inner Sliding Preview Letter -->
+                        <div class="inner-preview-letter">
+                            <span class="text-2xl mb-1">💌</span>
+                            <p class="font-script text-2xl text-rose-800">My Dearest Gubuuuu...</p>
+                            <p class="text-xs text-rose-600/80 mt-1">From Your Motuuu ❤️</p>
+                        </div>
+
+                        <!-- Side & Bottom Folds -->
+                        <div class="envelope-pocket-left"></div>
+                        <div class="envelope-pocket-right"></div>
+                        <div class="envelope-pocket-bottom"></div>
+
+                        <!-- Handwritten Tag on Bottom Front -->
+                        <div class="absolute bottom-3 left-0 right-0 z-10 text-center pointer-events-none">
+                            <span class="inline-block bg-amber-50/95 text-rose-950 font-script text-base sm:text-lg px-4 py-0.5 rounded-full shadow-sm border border-amber-300/80">
+                                For Mera Gubuuuu • From Your Motuuu ❤️
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Shimmering Gold Wax Seal -->
+                    <div class="wax-seal" title="Tap to break the seal">
+                        <span class="text-2xl drop-shadow-xs select-none">❤️</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tap Prompt -->
+            <button onclick="openMainEnvelope()" class="mt-6 group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-rose-700 via-rose-600 to-pink-600 text-white font-medium text-sm shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                <span>Tap the Wax Seal to Open</span>
+                <span class="group-hover:translate-x-1 transition-transform">✨</span>
+            </button>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- STAGE 2: INTRO CARD & 3 SUB-ENVELOPES                     -->
+        <!-- ========================================================= -->
+        <section id="stage-2" class="stage-section stage-hidden w-full flex flex-col items-center">
+            
+            <!-- Introductory Note Card -->
+            <div class="parchment-paper w-full rounded-3xl p-5 sm:p-7 text-center mb-6 relative">
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 px-4 py-0.5 rounded-full border border-amber-300 text-xs font-semibold text-amber-900 shadow-xs">
+                    Unfolded With Love • From Your Motuuu ❤️
+                </div>
+                <h2 class="font-script text-3xl sm:text-4xl text-rose-800 mt-1">
+                    Before anything else, Mera Gubuuuu...
+                </h2>
+                <p class="font-serif-romantic text-lg sm:text-xl text-rose-950/90 mt-2 leading-relaxed">
+                    Your Motuuu has tucked three little secrets inside for you. Open each envelope in order to see what my heart is trying to say...
+                </p>
+                
+                <!-- Progress Indicator -->
+                <div class="mt-4 flex items-center justify-center gap-2">
+                    <span class="text-xs font-medium text-rose-700">Secrets Opened:</span>
+                    <span id="opened-counter" class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold text-xs border border-rose-200">
+                        0 / 3
+                    </span>
+                </div>
+            </div>
+
+            <!-- Grid of 3 Distinct Sub-Envelopes -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+                
+                <!-- Sub-Envelope 1: A Little Secret -->
+                <div id="sub-env-1" onclick="openSubEnvelope(1)" 
+                    class="sub-envelope-card bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200/80 border-2 border-rose-300/80 p-5 pt-10 flex flex-col items-center text-center">
+                    <div class="sub-flap-triangle bg-gradient-to-b from-rose-300 to-rose-200"></div>
+                    
+                    <!-- Opened Badge -->
+                    <div id="badge-1" class="hidden absolute top-2.5 right-2.5 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs items-center gap-1">
+                        <span>Read</span> <span>✓</span>
+                    </div>
+
+                    <div class="w-12 h-12 rounded-full bg-white/90 border border-rose-200 shadow-sm flex items-center justify-center text-2xl mb-3">
+                        💌
+                    </div>
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-rose-600 mb-1">Envelope #1 • Open First</span>
+                    <h3 class="font-script text-2xl text-rose-950">A Little Secret for Mera Gubuuuu</h3>
+                    <p class="text-xs text-rose-800/80 mt-1.5">From Your Motuuu ❤️</p>
+                    <span class="mt-3 inline-block text-[11px] font-semibold text-rose-700 bg-white/75 px-3 py-1 rounded-full border border-rose-200">
+                        Tap to open
+                    </span>
+                </div>
+
+                <!-- Sub-Envelope 2: Heartfelt Apology -->
+                <div id="sub-env-2" onclick="openSubEnvelope(2)" 
+                    class="sub-envelope-card bg-gradient-to-br from-amber-50 via-orange-50 to-rose-100 border-2 border-amber-300/80 p-5 pt-10 flex flex-col items-center text-center opacity-80">
+                    <div class="sub-flap-triangle bg-gradient-to-b from-amber-300/90 to-amber-200/80"></div>
+                    
+                    <!-- Opened Badge -->
+                    <div id="badge-2" class="hidden absolute top-2.5 right-2.5 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs items-center gap-1">
+                        <span>Read</span> <span>✓</span>
+                    </div>
+
+                    <div class="w-12 h-12 rounded-full bg-white/90 border border-amber-200 shadow-sm flex items-center justify-center text-2xl mb-3">
+                        🥺
+                    </div>
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-amber-700 mb-1">Envelope #2 • Open Second</span>
+                    <h3 class="font-script text-2xl text-rose-950">I'm So Sorry, My Love</h3>
+                    <p class="text-xs text-rose-800/80 mt-1.5">From Your Motuuu ❤️</p>
+                    <span id="status-2" class="mt-3 inline-block text-[11px] font-semibold text-amber-800 bg-white/75 px-3 py-1 rounded-full border border-amber-200">
+                        Open #1 First 🔒
+                    </span>
+                </div>
+
+                <!-- Sub-Envelope 3: One More Thing -->
+                <div id="sub-env-3" onclick="openSubEnvelope(3)" 
+                    class="sub-envelope-card bg-gradient-to-br from-fuchsia-100/80 via-rose-100 to-amber-100/80 border-2 border-pink-300/90 p-5 pt-10 flex flex-col items-center text-center opacity-80">
+                    <div class="sub-flap-triangle bg-gradient-to-b from-pink-300 to-pink-200"></div>
+                    
+                    <!-- Opened Badge -->
+                    <div id="badge-3" class="hidden absolute top-2.5 right-2.5 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs items-center gap-1">
+                        <span>Read</span> <span>✓</span>
+                    </div>
+
+                    <div class="w-12 h-12 rounded-full bg-white/90 border border-pink-200 shadow-sm flex items-center justify-center text-2xl mb-3">
+                        💖
+                    </div>
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-pink-700 mb-1">Envelope #3 • Open Third</span>
+                    <h3 class="font-script text-2xl text-rose-950">One More Thing...</h3>
+                    <p class="text-xs text-rose-800/80 mt-1.5">From Your Motuuu ❤️</p>
+                    <span id="status-3" class="mt-3 inline-block text-[11px] font-semibold text-pink-800 bg-white/75 px-3 py-1 rounded-full border border-pink-200">
+                        Open #2 First 🔒
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Unlock Grand Finale Banner (Appears when all 3 are opened or via Envelope 3) -->
+            <div id="finale-unlock-bar" class="hidden mt-6 w-full parchment-paper rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-2 border-amber-400 shadow-lg animate-bounce">
+                <div class="text-center sm:text-left">
+                    <p class="font-script text-2xl text-rose-800">All Secrets Unlocked! 🎉</p>
+                    <p class="text-xs text-rose-700">Your final surprise is ready, Mera Gubuuuu...</p>
+                </div>
+                <button onclick="triggerGrandFinale()" class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-rose-600 to-pink-600 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer">
+                    Open Grand Finale 💖
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- STAGE 3: GRAND FINALE — I'M SORRY & I LOVE YOU GUBUUUU    -->
+        <!-- ========================================================= -->
+        <section id="stage-3" class="stage-section stage-hidden w-full flex flex-col items-center text-center py-2">
+            
+            <div class="parchment-paper w-full rounded-3xl p-6 sm:p-9 relative overflow-hidden">
+                <!-- Decorative Corner Sparkles -->
+                <div class="absolute top-3 left-4 text-amber-400/80 text-xl select-none">✨</div>
+                <div class="absolute top-3 right-4 text-amber-400/80 text-xl select-none">✨</div>
+
+                <!-- Glowing Animated Heart Centerpiece -->
+                <div class="my-2 flex justify-center">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-rose-100 to-pink-50 border-2 border-rose-200 flex items-center justify-center shadow-inner">
+                        <span class="text-5xl sm:text-6xl beating-heart select-none">❤️</span>
+                    </div>
+                </div>
+
+                <!-- Grand Headline -->
+                <h1 class="font-script text-3xl sm:text-5xl shimmer-gold font-bold leading-tight mt-3">
+                    I Love You Mera Gubuuuu ❤️
+                </h1>
+
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto my-4"></div>
+
+                <!-- Poetic Love & Apology Letter -->
+                <div class="font-serif-romantic text-lg sm:text-xl text-rose-950/90 space-y-3.5 leading-relaxed max-w-xl mx-auto text-left sm:text-center">
+                    <p>
+                        My sweetest <strong class="text-rose-700 font-semibold">Mera Gubuuuu</strong>, I am so, so sorry for upsetting you. If I could turn back time and erase every moment I made you sad, I would do it in a heartbeat. Seeing your smile fade is the hardest thing in my world.
+                    </p>
+                    <p>
+                        You are my peace, my favorite notification, my cutest happiness, and the best part of every single day. No matter what happens, I promise to listen better, hold you closer, and cherish you endlessly.
+                    </p>
+                    <p class="font-script text-2xl sm:text-3xl text-rose-700 pt-2 text-center">
+                        Forever Yours, Your Motuuu ❤️
+                    </p>
+                </div>
+
+                <!-- Interactive Forgiveness Section -->
+                <div id="forgive-prompt-box" class="mt-7 pt-5 border-t border-rose-200/80">
+                    <p class="font-semibold text-rose-900 text-base sm:text-lg mb-4">
+                        Forgive Your Motuuu? 💖
+                    </p>
+
+                    <div id="forgive-buttons-container" class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 relative min-h-[56px]">
+                        <!-- YES Button -->
+                        <button id="btn-forgive-yes" onclick="handleForgiveYes()" 
+                            class="px-6 py-3 rounded-full bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 text-white font-semibold text-sm sm:text-base shadow-lg shadow-rose-500/35 hover:shadow-rose-500/55 hover:scale-105 transition-all active:scale-95 cursor-pointer z-10">
+                            Yes, I Forgive My Motuuu! 🥰
+                        </button>
+
+                        <!-- Playful Dodging NO Button -->
+                        <button id="btn-forgive-no" onclick="handleForgiveNo()" onmouseover="dodgeNoButton()"
+                            class="px-5 py-2.5 rounded-full bg-white text-rose-700 border border-rose-300 font-medium text-xs sm:text-sm shadow-xs hover:bg-rose-50 transition-all duration-200 cursor-pointer">
+                            Still a little mad 😤
+                        </button>
+                    </div>
+
+                    <!-- Playful Teasing Micro-Copy -->
+                    <p id="tease-message" class="text-xs italic text-rose-600 mt-3 min-h-[18px] transition-opacity duration-300"></p>
+                </div>
+
+                <!-- Celebratory Confirmation Banner (Hidden until she clicks Yes) -->
+                <div id="forgiven-celebration" class="hidden mt-6 p-5 rounded-2xl bg-gradient-to-r from-rose-100 via-pink-100 to-amber-100 border-2 border-rose-300 shadow-inner">
+                    <div class="text-3xl mb-1">🥰🎉💖🌹</div>
+                    <h3 class="font-script text-3xl sm:text-4xl text-rose-800">
+                        Yay! Your Motuuu is the happiest!
+                    </h3>
+                    <p class="font-serif-romantic text-lg sm:text-xl text-rose-950 mt-1">
+                        I love you endlessly, <strong>Mera Gubuuuu</strong>! Come here for the biggest hug ever! 💕
+                    </p>
+                    <p class="font-script text-2xl text-rose-700 mt-1">
+                        — Forever Yours, Your Motuuu ❤️
+                    </p>
+                    <button onclick="burstHearts(45)" class="mt-3 px-4 py-1.5 rounded-full bg-white/90 text-rose-700 text-xs font-semibold border border-rose-200 shadow-xs hover:bg-white cursor-pointer">
+                        Send More Love Shower 💕
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Subtle Replay Option -->
+            <button onclick="resetExperience()" class="mt-4 text-xs text-rose-700/75 hover:text-rose-900 underline underline-offset-4 cursor-pointer">
+                Replay surprise from the beginning ↺
+            </button>
+        </section>
+
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- MODAL OVERLAY FOR SUB-ENVELOPE LETTERS                    -->
+    <!-- ========================================================= -->
+    <div id="letter-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-rose-950/45 backdrop-blur-xs transition-opacity duration-300">
+        <div id="letter-modal-card" class="parchment-paper w-full max-w-md rounded-3xl p-6 sm:p-8 relative transform scale-95 opacity-0 transition-all duration-300">
+            <!-- Close Button -->
+            <button onclick="closeLetterModal()" aria-label="Close note"
+                class="absolute top-4 right-4 w-8 h-8 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-800 flex items-center justify-center text-sm font-bold transition-colors cursor-pointer">
+                ✕
+            </button>
+
+            <!-- Dynamic Letter Content -->
+            <div id="modal-icon" class="w-14 h-14 mx-auto rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center text-3xl mb-3 shadow-xs">
+                💌
+            </div>
+            
+            <span id="modal-tag" class="block text-center text-[11px] uppercase tracking-widest font-bold text-rose-500 mb-1">
+                Secret #1
+            </span>
+
+            <h3 id="modal-title" class="font-script text-3xl sm:text-4xl text-center text-rose-900 mb-3">
+                I'm Really Sorry, Mera Gubuuuu
+            </h3>
+
+            <div id="modal-body" class="font-serif-romantic text-lg sm:text-xl text-rose-950/90 leading-relaxed space-y-3 text-center">
+                <!-- Filled dynamically -->
+            </div>
+
+            <!-- Action Button inside Modal -->
+            <div class="mt-6 flex flex-col items-center gap-2">
+                <p class="font-script text-xl text-rose-700">From Your Motuuu ❤️</p>
+                <button id="modal-action-btn" onclick="closeLetterModal()" 
+                    class="px-6 py-2.5 rounded-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-medium text-sm shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer">
+                    Keep Reading Secrets ❤️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subtle Footer -->
+    <footer class="w-full py-3 text-center text-xs font-medium text-rose-900/75 z-20">
+        For Mera Gubuuuu • Forever Yours, Your Motuuu ❤️
+    </footer>
+
+    <!-- ========================================================= -->
+    <!-- VANILLA JAVASCRIPT: ANIMATIONS, AUDIO & INTERACTIONS       -->
+    <!-- ========================================================= -->
+    <script>
+        /* -----------------------------------------------------------
+           1. STATE MANAGEMENT
+        ----------------------------------------------------------- */
+        const openedEnvelopes = new Set();
+        let noButtonDodges = 0;
+        let isMusicPlaying = false;
+        let audioCtx = null;
+        let musicInterval = null;
+
+        const subEnvelopeContents = {
+            1: {
+                icon: "✨💌",
+                tag: "Envelope #1 • A Little Secret",
+                title: "A Little Secret for Mera Gubuuuu",
+                paragraphs: [
+                    "Just in case you didn't know today: you are the cutest, sweetest, most irreplaceable person in my entire universe, Mera Gubuuuu.",
+                    "Whether you're laughing, being dramatic, or giving me cute angry faces—you are still my favorite human being and my safe place. — From Your Motuuu ❤️"
+                ],
+                btnText: "Unlock Envelope #2 💌",
+                isFinalKey: false
+            },
+            2: {
+                icon: "🥺❤️",
+                tag: "Envelope #2 • Heartfelt Apology",
+                title: "I'm So Sorry, My Love",
+                paragraphs: [
+                    "I hate knowing that I hurt you or made you feel sad. Your smile is literally my favorite thing in this world, and being the reason behind your frown breaks my heart.",
+                    "I admit my mistakes, Mera Gubuuuu. You deserve endless patience, care, and love—and I promise to always try my best to make you feel cherished and happy. — From Your Motuuu ❤️"
+                ],
+                btnText: "Unlock Envelope #3 💖",
+                isFinalKey: false
+            },
+            3: {
+                icon: "🗝️💖",
+                tag: "Envelope #3 • The Golden Key",
+                title: "One More Thing...",
+                paragraphs: [
+                    "Every little beat of my heart whispers your name, Mera Gubuuuu. No distance, no silly fight, and no bad day could ever change how deeply I adore you.",
+                    "You've unlocked the golden key from Your Motuuu ❤️! Tap below to open your grand final surprise..."
+                ],
+                btnText: "Open Grand Finale 💖✨",
+                isFinalKey: true
+            }
+        };
+
+        const playfulTeases = [
+            "Oops! That button is too shy to be clicked 🙈",
+            "Nice try, Gubuuuu! Your Motuuu won't let you stay mad 💕",
+            "Error 404: 'Still mad' not found for Mera Gubuuuu! 😘",
+            "Come on, you know you love Your Motuuu too! 🥺❤️",
+            "Okay fine, I surrender! Tap the sweet pink button instead 🥰"
+        ];
+
+        /* -----------------------------------------------------------
+           2. STAGE 1 -> STAGE 2: MAIN ENVELOPE OPENING
+        ----------------------------------------------------------- */
+        function openMainEnvelope() {
+            const envelope = document.getElementById('main-envelope');
+            if (envelope.classList.contains('opened')) return;
+
+            // Start gentle music automatically on first user gesture if not already active
+            if (!isMusicPlaying) {
+                startRomanticMusic();
+            }
+
+            envelope.classList.add('opened');
+            burstHearts(30);
+
+            // Transition smoothly to Stage 2 after flap opens & letter peeks out
+            setTimeout(() => {
+                switchStage('stage-1', 'stage-2');
+            }, 1350);
+        }
+
+        function switchStage(fromId, toId) {
+            const fromEl = document.getElementById(fromId);
+            const toEl = document.getElementById(toId);
+
+            fromEl.classList.remove('stage-visible');
+            fromEl.classList.add('stage-hidden');
+
+            setTimeout(() => {
+                toEl.classList.remove('stage-hidden');
+                toEl.classList.add('stage-visible');
+            }, 250);
+        }
+
+        /* -----------------------------------------------------------
+           3. STAGE 2: SUB-ENVELOPES & MODAL LOGIC
+        ----------------------------------------------------------- */
+        function openSubEnvelope(num) {
+            // Enforce sequential opening: 1 -> 2 -> 3
+            if (num === 2 && !openedEnvelopes.has(1)) {
+                shakeEnvelopeCard('sub-env-1');
+                return;
+            }
+            if (num === 3 && !openedEnvelopes.has(2)) {
+                shakeEnvelopeCard(openedEnvelopes.has(1) ? 'sub-env-2' : 'sub-env-1');
+                return;
+            }
+
+            const data = subEnvelopeContents[num];
+            if (!data) return;
+
+            // Mark as opened
+            openedEnvelopes.add(num);
+            updateOpenedProgress();
+
+            // Populate modal
+            document.getElementById('modal-icon').textContent = data.icon;
+            document.getElementById('modal-tag').textContent = data.tag;
+            document.getElementById('modal-title').textContent = data.title;
+
+            const bodyContainer = document.getElementById('modal-body');
+            bodyContainer.innerHTML = data.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+            const actionBtn = document.getElementById('modal-action-btn');
+            if (data.isFinalKey || openedEnvelopes.size === 3) {
+                actionBtn.textContent = openedEnvelopes.size === 3 
+                    ? "Unlock Grand Finale 💖✨" 
+                    : "Unlock Grand Finale (or read remaining) 💖";
+                actionBtn.onclick = () => {
+                    closeLetterModal();
+                    if (openedEnvelopes.size === 3 || data.isFinalKey) {
+                        triggerGrandFinale();
+                    }
+                };
+            } else {
+                actionBtn.textContent = data.btnText;
+                actionBtn.onclick = closeLetterModal;
+            }
+
+            // Show Modal with smooth animation
+            const modal = document.getElementById('letter-modal');
+            const card = document.getElementById('letter-modal-card');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            requestAnimationFrame(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            });
+
+            burstHearts(16);
+        }
+
+        function closeLetterModal() {
+            const modal = document.getElementById('letter-modal');
+            const card = document.getElementById('letter-modal-card');
+
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 250);
+        }
+
+        function shakeEnvelopeCard(cardId) {
+            const card = document.getElementById(cardId);
+            if (!card) return;
+            card.classList.add('ring-4', 'ring-rose-400', 'scale-105');
+            setTimeout(() => {
+                card.classList.remove('ring-4', 'ring-rose-400', 'scale-105');
+            }, 600);
+        }
+
+        function updateOpenedProgress() {
+            document.getElementById('opened-counter').textContent = `${openedEnvelopes.size} / 3`;
+
+            openedEnvelopes.forEach(num => {
+                const badge = document.getElementById(`badge-${num}`);
+                if (badge) {
+                    badge.classList.remove('hidden');
+                    badge.classList.add('flex');
+                }
+            });
+
+            // Unlock visual state of Envelope #2 after #1 is read
+            if (openedEnvelopes.has(1)) {
+                const env2 = document.getElementById('sub-env-2');
+                const status2 = document.getElementById('status-2');
+                if (env2) env2.classList.remove('opacity-80');
+                if (status2) status2.textContent = 'Tap to open ✨';
+            }
+
+            // Unlock visual state of Envelope #3 after #2 is read
+            if (openedEnvelopes.has(2)) {
+                const env3 = document.getElementById('sub-env-3');
+                const status3 = document.getElementById('status-3');
+                if (env3) env3.classList.remove('opacity-80');
+                if (status3) status3.textContent = 'Tap to unlock 💖';
+            }
+
+            if (openedEnvelopes.size === 3) {
+                const unlockBar = document.getElementById('finale-unlock-bar');
+                unlockBar.classList.remove('hidden');
+            }
+        }
+
+        /* -----------------------------------------------------------
+           4. STAGE 3: GRAND FINALE & PLAYFUL FORGIVENESS BUTTONS
+        ----------------------------------------------------------- */
+        function triggerGrandFinale() {
+            burstHearts(50);
+            switchStage('stage-2', 'stage-3');
+        }
+
+        function dodgeNoButton() {
+            const noBtn = document.getElementById('btn-forgive-no');
+            const teaseEl = document.getElementById('tease-message');
+            const yesBtn = document.getElementById('btn-forgive-yes');
+
+            noButtonDodges++;
+
+            // Show cute teasing message
+            const msgIndex = (noButtonDodges - 1) % playfulTeases.length;
+            teaseEl.textContent = playfulTeases[msgIndex];
+
+            // Make Yes button slightly more inviting each time
+            const newScale = Math.min(1 + noButtonDodges * 0.05, 1.25);
+            yesBtn.style.transform = `scale(${newScale})`;
+
+            if (noButtonDodges >= 5) {
+                // Transform the "Still mad" button into an affectionate surrender button!
+                noBtn.style.transform = 'translate(0px, 0px)';
+                noBtn.textContent = "Okay fine, I love you too! ❤️";
+                noBtn.classList.remove('bg-white', 'text-rose-700', 'border-rose-300');
+                noBtn.classList.add('bg-pink-100', 'text-rose-800', 'border-pink-400', 'font-semibold');
+                noBtn.onmouseover = null;
+                noBtn.onclick = handleForgiveYes;
+                return;
+            }
+
+            // Playful small hop within safe bounds so it never goes off-screen on mobile
+            const randomX = (Math.random() - 0.5) * 110;
+            const randomY = (Math.random() - 0.5) * 45;
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(${Math.max(0.85, 1 - noButtonDodges * 0.04)})`;
+        }
+
+        function handleForgiveNo() {
+            dodgeNoButton();
+        }
+
+        function handleForgiveYes() {
+            const promptBox = document.getElementById('forgive-prompt-box');
+            const celebrationBox = document.getElementById('forgiven-celebration');
+
+            promptBox.classList.add('hidden');
+            celebrationBox.classList.remove('hidden');
+
+            // Massive celebratory burst of hearts & petals
+            burstHearts(75);
+            setTimeout(() => burstHearts(45), 400);
+        }
+
+        function resetExperience() {
+            openedEnvelopes.clear();
+            noButtonDodges = 0;
+            updateOpenedProgress();
+
+            [1, 2, 3].forEach(num => {
+                const badge = document.getElementById(`badge-${num}`);
+                if (badge) {
+                    badge.classList.add('hidden');
+                    badge.classList.remove('flex');
+                }
+            });
+
+            // Re-lock sequential visual indicators for #2 and #3
+            const env2 = document.getElementById('sub-env-2');
+            const status2 = document.getElementById('status-2');
+            if (env2) env2.classList.add('opacity-80');
+            if (status2) status2.textContent = 'Open #1 First 🔒';
+
+            const env3 = document.getElementById('sub-env-3');
+            const status3 = document.getElementById('status-3');
+            if (env3) env3.classList.add('opacity-80');
+            if (status3) status3.textContent = 'Open #2 First 🔒';
+
+            document.getElementById('finale-unlock-bar').classList.add('hidden');
+            document.getElementById('main-envelope').classList.remove('opened');
+            
+            // Reset forgiveness box
+            document.getElementById('forgive-prompt-box').classList.remove('hidden');
+            document.getElementById('forgiven-celebration').classList.add('hidden');
+            document.getElementById('tease-message').textContent = '';
+
+            const yesBtn = document.getElementById('btn-forgive-yes');
+            yesBtn.style.transform = 'scale(1)';
+
+            const noBtn = document.getElementById('btn-forgive-no');
+            noBtn.style.transform = 'translate(0, 0)';
+            noBtn.textContent = "Still a little mad 😤";
+            noBtn.className = "px-5 py-2.5 rounded-full bg-white text-rose-700 border border-rose-300 font-medium text-xs sm:text-sm shadow-xs hover:bg-rose-50 transition-all duration-200 cursor-pointer";
+            noBtn.onmouseover = dodgeNoButton;
+            noBtn.onclick = handleForgiveNo;
+
+            switchStage('stage-3', 'stage-1');
+        }
+
+        /* -----------------------------------------------------------
+           5. WEB AUDIO API: SOFT ROMANTIC PIANO/MUSIC BOX SYNTHESIZER
+        ----------------------------------------------------------- */
+        function toggleRomanticMusic() {
+            if (isMusicPlaying) {
+                stopRomanticMusic();
+            } else {
+                startRomanticMusic();
+            }
+        }
+
+        function startRomanticMusic() {
+            try {
+                if (!audioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContextClass();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                isMusicPlaying = true;
+                document.getElementById('music-icon').textContent = '🎶';
+                document.getElementById('music-label').textContent = 'Playing...';
+
+                // Gentle romantic arpeggio progression (Fmaj7 -> Em7 -> Dm7 -> Cmaj7)
+                const melodyNotes = [
+                    349.23, 440.00, 523.25, 659.25, // Fmaj7
+                    329.63, 392.00, 493.88, 587.33, // Em7
+                    293.66, 349.23, 440.00, 523.25, // Dm7
+                    261.63, 329.63, 392.00, 493.88  // Cmaj7
+                ];
+                let step = 0;
+
+                const playSoftNote = () => {
+                    if (!isMusicPlaying || !audioCtx) return;
+                    const now = audioCtx.currentTime;
+                    const freq = melodyNotes[step % melodyNotes.length];
+                    step++;
+
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now);
+
+                    // Warm soft envelope like a delicate music box / felt piano
+                    gain.gain.setValueAtTime(0.0001, now);
+                    gain.gain.exponentialRampToValueAtTime(0.045, now + 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + 1.45);
+                };
+
+                playSoftNote();
+                musicInterval = setInterval(playSoftNote, 650);
+            } catch (e) {
+                console.warn('Audio playback prevented by browser:', e);
+            }
+        }
+
+        function stopRomanticMusic() {
+            isMusicPlaying = false;
+            if (musicInterval) {
+                clearInterval(musicInterval);
+                musicInterval = null;
+            }
+            document.getElementById('music-icon').textContent = '🎵';
+            document.getElementById('music-label').textContent = 'Play Melody';
+        }
+
+        /* -----------------------------------------------------------
+           6. AMBIENT CANVAS: RISING HEARTS, ROSE PETALS & SPARKLE BURSTS
+        ----------------------------------------------------------- */
+        const canvas = document.getElementById('ambient-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let burstParticles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class AmbientParticle {
+            constructor() {
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.type = Math.random() > 0.45 ? 'petal' : 'heart';
+                this.x = Math.random() * canvas.width;
+                this.y = initial 
+                    ? Math.random() * canvas.height 
+                    : (this.type === 'petal' ? -20 : canvas.height + 20);
+                this.size = this.type === 'petal' 
+                    ? (6 + Math.random() * 7) 
+                    : (8 + Math.random() * 10);
+                this.speedY = this.type === 'petal' 
+                    ? (0.5 + Math.random() * 0.9) 
+                    : -(0.4 + Math.random() * 0.8);
+                this.swaySpeed = 0.01 + Math.random() * 0.02;
+                this.swayOffset = Math.random() * Math.PI * 2;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.03;
+                this.opacity = 0.35 + Math.random() * 0.45;
+                
+                const colors = ['#f43f5e', '#fb7185', '#fda4af', '#e11d48', '#f59e0b'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.swayOffset += this.swaySpeed;
+                this.x += Math.sin(this.swayOffset) * 0.65;
+                this.rotation += this.rotSpeed;
+
+                if (this.type === 'petal' && this.y > canvas.height + 30) {
+                    this.reset(false);
+                } else if (this.type === 'heart' && this.y < -30) {
+                    this.reset(false);
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+
+                if (this.type === 'heart') {
+                    drawHeartPath(ctx, this.size);
+                    ctx.fill();
+                } else {
+                    // Delicate curved rose petal
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size);
+                    ctx.bezierCurveTo(this.size, -this.size * 0.5, this.size * 0.8, this.size, 0, this.size);
+                    ctx.bezierCurveTo(-this.size * 0.8, this.size, -this.size, -this.size * 0.5, 0, -this.size);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        class BurstParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 6.5;
+                this.vx = Math.cos(angle) * velocity;
+                this.vy = Math.sin(angle) * velocity - 2.5;
+                this.gravity = 0.12;
+                this.size = 7 + Math.random() * 9;
+                this.alpha = 1;
+                this.decay = 0.014 + Math.random() * 0.012;
+                this.isSparkle = Math.random() > 0.7;
+                const palette = ['#e11d48', '#f43f5e', '#fb7185', '#fbbf24', '#ec4899'];
+                this.color = palette[Math.floor(Math.random() * palette.length)];
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += this.gravity;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                if (this.alpha <= 0) return;
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color;
+
+                if (this.isSparkle) {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size * 0.35, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    drawHeartPath(ctx, this.size);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        function drawHeartPath(context, size) {
+            const topCurveHeight = size * 0.3;
+            context.beginPath();
+            context.moveTo(0, topCurveHeight);
+            context.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+            context.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.3, 0, size);
+            context.bezierCurveTo(0, (size + topCurveHeight) / 1.3, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+            context.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+            context.closePath();
+        }
+
+        function burstHearts(count = 25) {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height * 0.45;
+            for (let i = 0; i < count; i++) {
+                burstParticles.push(new BurstParticle(centerX, centerY));
+            }
+        }
+
+        // Initialize ambient particles
+        const ambientCount = window.innerWidth < 640 ? 28 : 45;
+        for (let i = 0; i < ambientCount; i++) {
+            particles.push(new AmbientParticle());
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            for (let i = burstParticles.length - 1; i >= 0; i--) {
+                const bp = burstParticles[i];
+                bp.update();
+                bp.draw();
+                if (bp.alpha <= 0) {
+                    burstParticles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.onload = function () {
+            animateCanvas();
+        };
+    </script>
+</body>
+</html>
